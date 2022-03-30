@@ -1,7 +1,8 @@
 const canvas = document.querySelector('canvas')
 const ctx = canvas.getContext('2d')
 
-var ratio = window.devicePixelRatio || 1;
+//var ratio = window.devicePixelRatio || 1;
+var ratio = 1
 var width = window.innerWidth * ratio;
 var height = window.innerHeight * ratio;
 
