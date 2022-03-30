@@ -1,8 +1,12 @@
 const canvas = document.querySelector('canvas')
 const ctx = canvas.getContext('2d')
 
-canvas.width = innerWidth
-canvas.height = innerHeight
+var ratio = window.devicePixelRatio || 1;
+var width = window.innerWidth * ratio;
+var height = window.innerHeight * ratio;
+
+canvas.width = width
+canvas.height = height
 
 const scoreEl = document.querySelector('#scoreEl')
 const startGameBtn = document.querySelector('#startGameBtn')
@@ -119,10 +123,12 @@ function init() {
     score = 0
     scoreEl.innerHTML = 0
     bigScoreEl.innerHTML = 0
+    spawnActive = true
 }
 
+let spawnID
 function spawnEnemies() {
-    setInterval(() => {
+    spawnID = setInterval(() => {
         const radius = Math.random() * (30 - 4) + 4
 
         let x 
@@ -181,6 +187,7 @@ function animate() {
 
         if (dist - enemy.radius - player.radius < 1) {
             cancelAnimationFrame(animationId)
+            clearInterval(spawnID)
             modalEl.style.display = 'flex'
             bigScoreEl.innerHTML = score
         }
@@ -216,10 +223,8 @@ function animate() {
     })
 }
 
-
-
-window.addEventListener('click', (event) => {
-    const angle = Math.atan2(event.clientY - canvas.height / 2, event.clientX - canvas.width / 2)
+function shoot(x, y) {
+    const angle = Math.atan2(y - canvas.height / 2, x - canvas.width / 2)
     
     const velocity = {
         x: Math.cos(angle) * 5,
@@ -227,6 +232,17 @@ window.addEventListener('click', (event) => {
     }
 
     projectiles.push(new Projectile(canvas.width / 2, canvas.height / 2, 5, 'white', velocity))
+}
+
+window.addEventListener('click', (event) => {
+    
+    shoot(event.x, event.y)
+})
+
+window.addEventListener('dblclick', (event) => {
+    shoot(event.x, event.y)
+    shoot(event.x, event.y)
+    console.log(event.x, event.y)
 })
 
 startGameBtn.addEventListener('click', () => {
