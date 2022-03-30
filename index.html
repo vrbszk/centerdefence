@@ -1,0 +1,73 @@
+<html>
+
+<body>
+    <style>
+        body {
+            margin: 0;
+            background-color: black;
+        }
+
+        .score_label {
+            position: fixed;
+            color: white;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            user-select: none;
+        }
+
+        .frame {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .window {
+            background-color: white;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            width: 50%;
+            padding: 60;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 6em;
+            font-weight: bold;
+        }
+
+        p {
+            font-size: 1em;
+            color: gray
+        }
+
+        button {
+            font-size: 1.5em;
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 20 3;
+            border-radius: 100px;
+        }
+    </style>
+    <div class="score_label">
+        <span>Score: </span>
+        <span id="scoreEl">0</span>
+    </div>
+
+    <div class="frame" id="modalEl">
+        <div class="window">
+            <h1 id="bigScoreEl">0</h1>
+            <p>Points</p>
+            <div><button id="startGameBtn">Start Game</button></div>
+        </div>
+    </div>
+    <canvas></canvas>
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.0/gsap.min.js" integrity="sha512-bD2JVWcpIS1kkd7gbzcVKfGbwLTRKL+2RT55rGbhSp/nqCz8vanLuZ8O5K1FLtyPoS2RvLD9sThVgHdgrHFBPw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./index.js"></script>
+</body>
+
+</html>
